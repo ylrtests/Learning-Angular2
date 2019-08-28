@@ -1,4 +1,20 @@
   <div class="card search">
     <h1 class="search-headline">Artist Directory</h1>
-    <label class="search-label">search</label>
+    <label class="search-label">search <span *ngIf="name">for {{ name }}</span></label>
   </div><!-- card search -->
+  <h1>Artistas</h1>
+  <ul class="artistlist cf">
+    <li class="artistlist-item cf" 
+        *ngFor=" let artist of artists">
+        <h2 class="artist-name">{{ artist }}</h2>
+    </li>
+  </ul>
+
+  <h1 style="margin-top: 150px">Estudiantes</h1>
+  <ul class="artistlist cf">
+    <li class="artistlist-item cf"
+        *ngFor="let student of students">
+      <h2 class="artist-name">{{ student.name }}</h2>
+      <p> {{student.school}}</p>
+    </li>
+  </ul>
