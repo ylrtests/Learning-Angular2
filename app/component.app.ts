@@ -9,8 +9,10 @@ export class AppComponent {
   name: string;
   artists: any;
 
-  onClick(e) {
-    this.name=e.target.innerHTML;
+  onClick(artistContainer, currentArtist) {
+    console.log(currentArtist)
+    this.name = currentArtist.name;
+    artistContainer.style.backgroundColor = "red"
   }
 
   addArtist(value) {
