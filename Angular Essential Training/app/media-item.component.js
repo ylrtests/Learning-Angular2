@@ -19,7 +19,21 @@ System.register(["@angular/core"], function(exports_1, context_1) {
             }],
         execute: function() {
             MediaItemComponent = class MediaItemComponent {
+                constructor() {
+                    this.delete = new core_1.EventEmitter();
+                }
+                onDelete() {
+                    this.delete.emit(this.mediaItem);
+                }
             };
+            __decorate([
+                core_1.Input(), 
+                __metadata('design:type', Object)
+            ], MediaItemComponent.prototype, "mediaItem", void 0);
+            __decorate([
+                core_1.Output(), 
+                __metadata('design:type', Object)
+            ], MediaItemComponent.prototype, "delete", void 0);
             MediaItemComponent = __decorate([
                 core_1.Component({
                     selector: "mw-media-item",
