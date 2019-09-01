@@ -11,39 +11,34 @@ System.register(["@angular/core"], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AppComponent;
+    var CategoryListPipe;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            AppComponent = class AppComponent {
-                constructor() {
-                    this.firstMediaItem = {
-                        id: 1,
-                        name: "Firebug",
-                        medium: "Series",
-                        category: "Science fiction",
-                        year: 2010,
-                        watchedOn: null,
-                        isFavorite: false
-                    };
-                }
-                onMediaItemDelete(mediaItem) {
-                    console.log("eliminare este mediaItem");
+            CategoryListPipe = class CategoryListPipe {
+                transform(mediaItems) {
+                    var categories = [];
+                    mediaItems.forEach(mediaItem => {
+                        // Si el valor es -1, significa que no se encontro la categoria dentro del array
+                        // por eso la añade.
+                        if (categories.indexOf(mediaItem.category) <= -1) {
+                            categories.push(mediaItem.category);
+                        }
+                    });
+                    return categories.join(', ');
                 }
             };
-            AppComponent = __decorate([
-                core_1.Component({
-                    selector: "mw-app",
-                    templateUrl: "app/app.component.html",
-                    styleUrls: ["app/app.component.css"]
+            CategoryListPipe = __decorate([
+                core_1.Pipe({
+                    name: "categoryList",
                 }), 
                 __metadata('design:paramtypes', [])
-            ], AppComponent);
-            exports_1("AppComponent", AppComponent);
+            ], CategoryListPipe);
+            exports_1("CategoryListPipe", CategoryListPipe);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=category-list.pipe.js.map

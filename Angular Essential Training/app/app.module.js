@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/platform-browser", "./app.component", "./media-item.component"], function(exports_1, context_1) {
+System.register(["@angular/core", "@angular/platform-browser", "./app.component", "./media-item.component", "./media-item-list.component", "./favorite.directive", "./category-list.pipe"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/platform-browser", "./app.component"
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, platform_browser_1, app_component_1, media_item_component_1;
+    var core_1, platform_browser_1, app_component_1, media_item_component_1, media_item_list_component_1, favorite_directive_1, category_list_pipe_1;
     var AppModule;
     return {
         setters:[
@@ -25,6 +25,15 @@ System.register(["@angular/core", "@angular/platform-browser", "./app.component"
             },
             function (media_item_component_1_1) {
                 media_item_component_1 = media_item_component_1_1;
+            },
+            function (media_item_list_component_1_1) {
+                media_item_list_component_1 = media_item_list_component_1_1;
+            },
+            function (favorite_directive_1_1) {
+                favorite_directive_1 = favorite_directive_1_1;
+            },
+            function (category_list_pipe_1_1) {
+                category_list_pipe_1 = category_list_pipe_1_1;
             }],
         execute: function() {
             AppModule = class AppModule {
@@ -36,7 +45,10 @@ System.register(["@angular/core", "@angular/platform-browser", "./app.component"
                     ],
                     declarations: [
                         app_component_1.AppComponent,
-                        media_item_component_1.MediaItemComponent
+                        media_item_component_1.MediaItemComponent,
+                        media_item_list_component_1.MediaItemListComponent,
+                        favorite_directive_1.FavoriteDirective,
+                        category_list_pipe_1.CategoryListPipe
                     ],
                     bootstrap: [
                         app_component_1.AppComponent

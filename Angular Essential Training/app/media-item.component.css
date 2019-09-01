@@ -35,9 +35,18 @@ h2 {
   height: 24px;
   fill: #bdc2c5;
 }
+/* .favorite:hover{
+  fill: #45bf94;
+} */
+
 .favorite.is-favorite {
     fill: #37ad79;
 }
+/* 
+.favorite.is-favorite:hover {
+  fill: #ec4342;
+} */
+
 .favorite.is-favorite-hovering {
     fill: #45bf94;
 }
