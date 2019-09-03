@@ -1,6 +1,5 @@
-System.register(['@angular/core', "./media-item.service"], function(exports_1, context_1) {
+System.register(["@angular/core", "./media-item.service"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,17 +9,18 @@ System.register(['@angular/core', "./media-item.service"], function(exports_1, c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, media_item_service_1;
-    var MediaItemListComponent;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, media_item_service_1, MediaItemListComponent;
     return {
-        setters:[
+        setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
             },
             function (media_item_service_1_1) {
                 media_item_service_1 = media_item_service_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             MediaItemListComponent = class MediaItemListComponent {
                 //Creamos el constructor para que Angular haga la inyección en el constructor.
                 constructor(mediaItemService) {
@@ -38,11 +38,11 @@ System.register(['@angular/core', "./media-item.service"], function(exports_1, c
                     selector: 'mw-media-item-list',
                     templateUrl: 'app/media-item-list.component.html',
                     styleUrls: ['app/media-item-list.component.css']
-                }), 
-                __metadata('design:paramtypes', [media_item_service_1.MediaItemService])
+                }),
+                __metadata("design:paramtypes", [media_item_service_1.MediaItemService])
             ], MediaItemListComponent);
             exports_1("MediaItemListComponent", MediaItemListComponent);
         }
-    }
+    };
 });
 //# sourceMappingURL=media-item-list.component.js.map
