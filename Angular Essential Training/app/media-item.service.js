@@ -1,70 +1,56 @@
-System.register([], function (exports_1, context_1) {
+System.register(["@angular/common/http", "@angular/core", "rxjs/operators"], function (exports_1, context_1) {
     "use strict";
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
     var __moduleName = context_1 && context_1.id;
-    var MediaItemService;
+    var http_1, core_1, operators_1, MediaItemService;
     return {
-        setters: [],
+        setters: [
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (operators_1_1) {
+                operators_1 = operators_1_1;
+            }
+        ],
         execute: function () {
             MediaItemService = class MediaItemService {
-                constructor() {
-                    this.mediaItems = [
-                        {
-                            id: 1,
-                            name: "Firebug",
-                            medium: "Series",
-                            category: "Science Fiction",
-                            year: 2010,
-                            watchedOn: 1294166565384,
-                            isFavorite: false
-                        },
-                        {
-                            id: 2,
-                            name: "The Small Tall",
-                            medium: "Movies",
-                            category: "Comedy",
-                            year: 2015,
-                            watchedOn: null,
-                            isFavorite: true
-                        }, {
-                            id: 3,
-                            name: "The Redemption",
-                            medium: "Movies",
-                            category: "Action",
-                            year: 2016,
-                            watchedOn: null,
-                            isFavorite: false
-                        }, {
-                            id: 4,
-                            name: "Hoopers",
-                            medium: "Series",
-                            category: "Drama",
-                            year: null,
-                            watchedOn: null,
-                            isFavorite: true
-                        }, {
-                            id: 5,
-                            name: "Happy Joe: Cheery Road",
-                            medium: "Movies",
-                            category: "Action",
-                            year: 2015,
-                            watchedOn: 1457166565384,
-                            isFavorite: false
-                        }
-                    ];
+                constructor(http) {
+                    this.http = http;
                 }
-                get() {
-                    return this.mediaItems;
+                get(medium) {
+                    let getOptions = {
+                        params: {
+                            medium
+                        }
+                    };
+                    //"this.http.get('aquí va una url, mediaitems lo soporta el mock backend')
+                    // this.http.get retorna un observable de http responses
+                    return this.http.get("mediaitems", getOptions).pipe(operators_1.map((response) => {
+                        return response.mediaItems;
+                    }));
                 }
                 add(mediaItem) {
-                    this.mediaItems.push(mediaItem);
+                    return this.http.post('mediaitems', mediaItem);
                 }
                 delete(mediaItem) {
-                    let index = this.mediaItems.indexOf(mediaItem);
-                    if (index >= 0) {
-                        this.mediaItems.splice(index, 1);
-                    }
+                    return this.http.delete(`mediaitems/${mediaItem.id}`);
                 }
             };
+            MediaItemService = __decorate([
+                core_1.Injectable(),
+                __metadata("design:paramtypes", [http_1.HttpClient])
+            ], MediaItemService);
             exports_1("MediaItemService", MediaItemService);
         }
     };

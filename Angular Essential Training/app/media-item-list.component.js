@@ -25,12 +25,24 @@ System.register(["@angular/core", "./media-item.service"], function (exports_1, 
                 //Creamos el constructor para que Angular haga la inyección en el constructor.
                 constructor(mediaItemService) {
                     this.mediaItemService = mediaItemService;
+                    this.medium = "";
+                    this.mediaItems = [];
                 }
                 ngOnInit() {
-                    this.mediaItems = this.mediaItemService.get();
+                    this.getMediaItems(this.medium);
                 }
                 onMediaItemDelete(mediaItem) {
-                    this.mediaItemService.delete(mediaItem);
+                    this.mediaItemService.delete(mediaItem)
+                        .subscribe(() => {
+                        this.getMediaItems(this.medium);
+                    });
+                }
+                getMediaItems(medium) {
+                    this.medium = medium;
+                    this.mediaItemService.get(medium)
+                        .subscribe((mediaItems) => {
+                        this.mediaItems = mediaItems;
+                    });
                 }
             };
             MediaItemListComponent = __decorate([

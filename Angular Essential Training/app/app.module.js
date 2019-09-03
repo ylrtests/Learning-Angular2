@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/platform-browser", "@angular/forms", "@angular/common/http", "./app.component", "./media-item.component", "./media-item-list.component", "./favorite.directive", "./category-list.pipe", "./media-item-form.component", "./media-item.service", "./providers"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/platform-browser", "@angular/forms", "@angular/common/http", "./app.component", "./media-item.component", "./media-item-list.component", "./favorite.directive", "./category-list.pipe", "./media-item-form.component", "./media-item.service", "./providers", "./mock-xhr-backend"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, platform_browser_1, forms_1, http_1, app_component_1, media_item_component_1, media_item_list_component_1, favorite_directive_1, category_list_pipe_1, media_item_form_component_1, media_item_service_1, providers_1, AppModule;
+    var core_1, platform_browser_1, forms_1, http_1, app_component_1, media_item_component_1, media_item_list_component_1, favorite_directive_1, category_list_pipe_1, media_item_form_component_1, media_item_service_1, providers_1, mock_xhr_backend_1, AppModule;
     return {
         setters: [
             function (core_1_1) {
@@ -45,6 +45,9 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
             },
             function (providers_1_1) {
                 providers_1 = providers_1_1;
+            },
+            function (mock_xhr_backend_1_1) {
+                mock_xhr_backend_1 = mock_xhr_backend_1_1;
             }
         ],
         execute: function () {
@@ -67,7 +70,8 @@ System.register(["@angular/core", "@angular/platform-browser", "@angular/forms",
                     ],
                     providers: [
                         media_item_service_1.MediaItemService,
-                        { provide: providers_1.lookupListToken, useValue: providers_1.lookupLists }
+                        { provide: providers_1.lookupListToken, useValue: providers_1.lookupLists },
+                        { provide: http_1.HttpXhrBackend, useClass: mock_xhr_backend_1.MockXHRBackend }
                     ],
                     bootstrap: [
                         app_component_1.AppComponent
