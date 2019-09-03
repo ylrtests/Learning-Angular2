@@ -1,4 +1,4 @@
-System.register(['@angular/core'], function(exports_1, context_1) {
+System.register(['@angular/core', "@angular/forms"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,46 @@ System.register(['@angular/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, forms_1;
     var MediaItemFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (forms_1_1) {
+                forms_1 = forms_1_1;
             }],
         execute: function() {
             MediaItemFormComponent = class MediaItemFormComponent {
+                ngOnInit() {
+                    this.formAddMedia = new forms_1.FormGroup({
+                        medium: new forms_1.FormControl('Movies'),
+                        name: new forms_1.FormControl('', forms_1.Validators.compose([
+                            forms_1.Validators.required,
+                            forms_1.Validators.pattern('[\\w\\-\\s\\/]+')
+                        ])),
+                        category: new forms_1.FormControl(''),
+                        year: new forms_1.FormControl('', this.yearValidator)
+                    });
+                }
+                yearValidator(control) {
+                    if (control.value.trim().length === 0) {
+                        return null; //Es válido, si no hay año, no hay problema.
+                    }
+                    let year = parseInt(control.value);
+                    let minYear = 1900;
+                    let maxYear = 2100;
+                    if (year >= minYear && year <= maxYear) {
+                        return null; //Es válido, está entre los rangos
+                    }
+                    else {
+                        return { "notInRange": {
+                                min: minYear,
+                                max: maxYear
+                            } }; //Retorna un objeto cuando no es válido.
+                    }
+                }
                 onSubmit(mediaItem) {
                     console.log(mediaItem);
                 }
