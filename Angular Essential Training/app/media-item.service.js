@@ -34,6 +34,7 @@ System.register(["@angular/common/http", "@angular/core", "rxjs/operators"], fun
                             medium
                         }
                     };
+                    console.log(getOptions);
                     //"this.http.get('aquí va una url, mediaitems lo soporta el mock backend')
                     // this.http.get retorna un observable de http responses
                     return this.http.get("mediaitems", getOptions).pipe(operators_1.map((response) => {

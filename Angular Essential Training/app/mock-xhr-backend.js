@@ -73,7 +73,7 @@ System.register(["@angular/common/http", "rxjs/Observable"], function (exports_1
                                     }
                                     let mediaItems;
                                     if (medium) {
-                                        mediaItems = this._mediaItems.filter(mediaItem => mediaItem.medium === medium);
+                                        mediaItems = this._mediaItems.filter(mediaItem => mediaItem.medium.toLowerCase() === medium);
                                     }
                                     else {
                                         mediaItems = this._mediaItems;

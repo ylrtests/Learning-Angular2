@@ -1,4 +1,4 @@
-System.register(["@angular/core", "./media-item.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/router", "./media-item.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,11 +10,14 @@ System.register(["@angular/core", "./media-item.service"], function (exports_1, 
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, media_item_service_1, MediaItemListComponent;
+    var core_1, router_1, media_item_service_1, MediaItemListComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (media_item_service_1_1) {
                 media_item_service_1 = media_item_service_1_1;
@@ -23,13 +26,22 @@ System.register(["@angular/core", "./media-item.service"], function (exports_1, 
         execute: function () {
             MediaItemListComponent = class MediaItemListComponent {
                 //Creamos el constructor para que Angular haga la inyección en el constructor.
-                constructor(mediaItemService) {
+                constructor(mediaItemService, activatedRoute) {
                     this.mediaItemService = mediaItemService;
+                    this.activatedRoute = activatedRoute;
                     this.medium = "";
                     this.mediaItems = [];
                 }
                 ngOnInit() {
-                    this.getMediaItems(this.medium);
+                    this.activatedRoute.params
+                        .subscribe((params) => {
+                        let medium = params['medium'];
+                        console.log(medium);
+                        if (medium.toLowerCase() === "all") {
+                            medium = "";
+                        }
+                        this.getMediaItems(medium);
+                    });
                 }
                 onMediaItemDelete(mediaItem) {
                     this.mediaItemService.delete(mediaItem)
@@ -51,7 +63,8 @@ System.register(["@angular/core", "./media-item.service"], function (exports_1, 
                     templateUrl: 'app/media-item-list.component.html',
                     styleUrls: ['app/media-item-list.component.css']
                 }),
-                __metadata("design:paramtypes", [media_item_service_1.MediaItemService])
+                __metadata("design:paramtypes", [media_item_service_1.MediaItemService,
+                    router_1.ActivatedRoute])
             ], MediaItemListComponent);
             exports_1("MediaItemListComponent", MediaItemListComponent);
         }

@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/forms", "./media-item.service", "./providers"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/forms", "@angular/router", "./media-item.service", "./providers"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -13,7 +13,7 @@ System.register(["@angular/core", "@angular/forms", "./media-item.service", "./p
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, forms_1, media_item_service_1, providers_1, MediaItemFormComponent;
+    var core_1, forms_1, router_1, media_item_service_1, providers_1, MediaItemFormComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -21,6 +21,9 @@ System.register(["@angular/core", "@angular/forms", "./media-item.service", "./p
             },
             function (forms_1_1) {
                 forms_1 = forms_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (media_item_service_1_1) {
                 media_item_service_1 = media_item_service_1_1;
@@ -31,10 +34,11 @@ System.register(["@angular/core", "@angular/forms", "./media-item.service", "./p
         ],
         execute: function () {
             MediaItemFormComponent = class MediaItemFormComponent {
-                constructor(formBuilder, mediaItemService, lookupLists) {
+                constructor(formBuilder, mediaItemService, lookupLists, router) {
                     this.formBuilder = formBuilder;
                     this.mediaItemService = mediaItemService;
                     this.lookupLists = lookupLists;
+                    this.router = router;
                 }
                 ngOnInit() {
                     this.formAddMedia = this.formBuilder.group({
@@ -65,7 +69,11 @@ System.register(["@angular/core", "@angular/forms", "./media-item.service", "./p
                     }
                 }
                 onSubmit(mediaItem) {
-                    this.mediaItemService.add(mediaItem).subscribe();
+                    this.mediaItemService.add(mediaItem)
+                        .subscribe(() => {
+                        //Base - parte url
+                        this.router.navigate(["/", mediaItem.medium.toLowerCase()]);
+                    });
                 }
             };
             MediaItemFormComponent = __decorate([
@@ -76,7 +84,7 @@ System.register(["@angular/core", "@angular/forms", "./media-item.service", "./p
                 }),
                 __param(2, core_1.Inject(providers_1.lookupListToken)),
                 __metadata("design:paramtypes", [forms_1.FormBuilder,
-                    media_item_service_1.MediaItemService, Object])
+                    media_item_service_1.MediaItemService, Object, router_1.Router])
             ], MediaItemFormComponent);
             exports_1("MediaItemFormComponent", MediaItemFormComponent);
         }
