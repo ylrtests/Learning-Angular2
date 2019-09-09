@@ -1,14 +1,18 @@
 const express = require ('express');
 const app = express();
-
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
+const path = require('path');
 
 require ('dotenv').config();
 
-app.use(bodyParser.json());
-
 let database;
+
+
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
+
 
 MongoClient.connect(process.env.DB_CONN, (err, db) => {
     console.log('Connected to db..');
@@ -42,3 +46,7 @@ app.post('/api/contacts', (req, res) => {
     });
 })
 
+//No request found
+app.get('*', (req,res) => {
+    return res.sendFile(path.join(__dirname, 'public/index.html'));
+})
