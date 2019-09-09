@@ -24,6 +24,11 @@ MongoClient.connect(process.env.DB_CONN, (err, db) => {
 
 // GET Request
 app.get('/api/contacts', (req, res) => {
+    
+    // return res.status(500).json({
+    //     'error': 'Error retriving records'
+    // })
+
     const contactsCollection = database.collection('contacts');
 
     contactsCollection.find({}).toArray( (err, docs) => {
@@ -32,6 +37,12 @@ app.get('/api/contacts', (req, res) => {
 })
 // POST Request
 app.post('/api/contacts', (req, res) => {
+
+    // return res.status(500).json({
+    //     'error': 'Error inserting new record'
+    // })
+    
+
     const user = req.body;
     
     const contactsCollection = database.collection('contacts');

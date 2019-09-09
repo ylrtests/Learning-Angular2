@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { NgForm } from '@angular/forms';
-import 'rxjs/add/operator/map';
 import { Contact } from '../shared/contact.model';
+import { ApiService } from '../shared/api.service';
 
 
 @Component({
@@ -15,7 +14,9 @@ export class AddContactComponent implements OnInit {
   loading: boolean = false;
   newContact: Contact;
 
-  constructor(private http: Http) { }
+  constructor(
+    private apiService: ApiService
+  ) { }
 
   ngOnInit() {
   }
@@ -31,13 +32,7 @@ export class AddContactComponent implements OnInit {
       photoUrl: formValues.photo
     }
 
-    const headers = new Headers ();
-    headers.append('Content-Type', 'application/json');
-
-    const requestOptions = new RequestOptions({headers: headers})
-
-    this.http.post('/api/contacts', contact, requestOptions)
-      .map( (res: Response) => res.json())
+    this.apiService.post('contacts', contact)
       .subscribe( (data) => {
         form.reset();
         this.loading = false;
