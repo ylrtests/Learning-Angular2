@@ -9,8 +9,12 @@ import { MenuComponent } from './menu/menu.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactComponent } from './contact/contact.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { LoginComponent } from './login/login.component';
 
 import { ApiService } from './shared/api.service';
+import { AuthService } from './shared/auth.service';
+
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,8 @@ import { ApiService } from './shared/api.service';
     MenuComponent,
     ContactListComponent,
     ContactComponent,
-    AddContactComponent
+    AddContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,9 @@ import { ApiService } from './shared/api.service';
     AppRoutingModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
